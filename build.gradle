@@ -1,0 +1,24 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		// main dependencies
+		classpath 'com.github.horseshoe:horseshoe:1.+'
+		classpath 'io.github.xs-parser:xs-parser:1.+'
+		classpath 'org.yaml:snakeyaml:1.+'
+		classpath 'net.sf.saxon:Saxon-HE:10.+'
+
+		// test dependencies
+		classpath 'junit:junit:4.+'
+
+		// other dependencies
+		classpath 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
+		classpath 'javax.xml.bind:jaxb-api:2.3.1'
+	}
+}
+
+task downloadDeps {
+	buildscript.configurations.getAsMap().each { k, v -> println "Dependency: $k = $v.files" }
+}
