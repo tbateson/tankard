@@ -1,0 +1,9 @@
+{
+	"packages": [
+		"jdk",
+		"gradle",
+		"vs-buildtools:17.2.3",
+		"llvm",
+		"git"
+	]
+}
