@@ -1,4 +1,4 @@
-name: EL8 amd64
+name: Centos 7 amd64
 
 on:
   push:
@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  el8-amd64:
+  centos-7-amd64:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +26,6 @@ jobs:
     - name: Build and Push
       uses: docker/build-push-action@v3
       with:
-        file: el8-amd64.Dockerfile
+        file: centos-7-amd64.Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/tankard:el8-amd64
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/tankard:centos-7-amd64

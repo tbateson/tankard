@@ -1,4 +1,4 @@
-name: Windows amd64
+name: Centos 8 amd64
 
 on:
   push:
@@ -8,8 +8,8 @@ permissions:
   contents: read
 
 jobs:
-  windows-amd64:
-    runs-on: windows-2022
+  centos-8-amd64:
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -23,10 +23,9 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Build
-      run: |
-        docker build . -f windows-amd64.Dockerfile -t docker.io/${{ secrets.DOCKERHUB_USERNAME }}/tankard:windows-amd64
-
-    - name: Push
-      run: |
-        docker image push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/tankard:windows-amd64
+    - name: Build and Push
+      uses: docker/build-push-action@v3
+      with:
+        file: centos-8-amd64.Dockerfile
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/tankard:centos-8-amd64

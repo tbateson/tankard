@@ -1,4 +1,4 @@
-name: Alpine amd64
+name: Alpine 3 amd64
 
 on:
   push:
@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  alpine-amd64:
+  alpine-3-amd64:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +26,6 @@ jobs:
     - name: Build and Push
       uses: docker/build-push-action@v3
       with:
-        file: alpine-amd64.Dockerfile
+        file: alpine-3-amd64.Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/tankard:alpine-amd64
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/tankard:alpine-3-amd64
