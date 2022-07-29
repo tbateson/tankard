@@ -6,6 +6,7 @@ RUN iex (iwr 'https://raw.githubusercontent.com/airpwr/airpwr/main/src/install.p
 
 RUN mkdir -p Temp
 COPY pwr.json /Temp/pwr.json
-COPY build.gradle /Temp/build.gradle
+RUN cd Temp; pwr ls -fetch; pwr sh; gradle init --no-daemon -i --type java-application --test-framework junit --dsl groovy --project-name tmp --package tmp --incubating; pwr exit
 
-RUN pwr ls -fetch; Push-Location Temp; pwr sh; gradle --no-daemon downloadDeps; pwr exit; Pop-Location; Remove-Item -Path /Temp -Recurse
+COPY build.gradle /Temp/app/build.gradle
+RUN Push-Location Temp; pwr sh; Push-Location app; gradle --no-daemon -i downloadDeps build run spotlessCheck; Pop-Location; pwr exit; Pop-Location; Remove-Item -Path /Temp -Recurse

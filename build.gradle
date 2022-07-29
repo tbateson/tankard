@@ -14,11 +14,33 @@ buildscript {
 		classpath 'junit:junit:4.+'
 
 		// other dependencies
+		classpath 'com.diffplug.spotless:spotless-plugin-gradle:+'
 		classpath 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
 		classpath 'javax.xml.bind:jaxb-api:2.3.1'
 	}
 }
 
+plugins {
+	id 'application'
+	id 'java-library'
+	id 'jacoco'
+	id 'com.diffplug.spotless' version '+'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testImplementation 'junit:junit:4.+'
+}
+
+application {
+	mainClass = 'tmp.App'
+}
+
 task downloadDeps {
-	buildscript.configurations.getAsMap().each { k, v -> println "Dependency: $k = $v.files" }
+	doLast {
+		buildscript.configurations.getAsMap().each { k, v -> println "Dependency: $k = $v.files" }
+	}
 }
