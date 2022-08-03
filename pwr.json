@@ -1,6 +1,6 @@
 {
 	"packages": [
-		"jdk",
+		"jdk:11",
 		"gradle",
 		"vs-buildtools:17.2.3",
 		"llvm",
