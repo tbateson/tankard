@@ -15,3 +15,6 @@ RUN curl -sL "https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-b
 RUN mkdir -p tmp && cd tmp && gradle init --no-daemon -i --type java-application --test-framework junit --dsl groovy --project-name tmp --package tmp --incubating
 COPY build.gradle /tmp/app/build.gradle
 RUN cd tmp/app && gradle --no-daemon -i downloadDeps build run jacocoTestReport spotlessCheck && cd / && rm -rf /tmp && mkdir -p /tmp
+
+ARG SONAR_VERSION=4.7.0.2747
+RUN curl -sL "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_VERSION-linux.zip" --output sonar-scanner.zip && unzip -q sonar-scanner.zip && rm -rf sonar-scanner.zip && ln -sf /sonar-scanner-*-linux/bin/* /usr/bin
