@@ -3,6 +3,7 @@ name: Centos 8 amd64
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
