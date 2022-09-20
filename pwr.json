@@ -7,11 +7,21 @@
 		"git"
 	],
 	"scripts": {
-		"gradle-init": "gradle init --no-daemon -i --type java-application --test-framework junit --dsl groovy --project-name tmp --package tmp --incubating",
-		"gradle-deps": "gradle --no-daemon -i downloadDeps build run jacocoTestReport spotlessCheck; Pop-Location",
+		"gradle-init": {
+			"packages": ["jdk:11", "gradle"],
+			"command": "gradle init --no-daemon -i --type java-application --test-framework junit --dsl groovy --project-name tmp --package tmp --incubating"
+		},
+		"gradle-deps": {
+			"packages": ["jdk:11", "gradle"],
+			"command": "gradle --no-daemon -i downloadDeps build run jacocoTestReport spotlessCheck; Pop-Location"
+		},
 		"md2pdf-install": {
 			"packages": ["node"],
 			"command": "npm i -g md-to-pdf"
+		},
+		"test-cpp": {
+			"packages": ["vs-buildtools:17.2.3:msvc143-amd64", "llvm"],
+			"command": "clang-cl test.cpp; if ($LASTEXITCODE) { throw }; ./test.exe"
 		}
 	}
 }
