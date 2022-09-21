@@ -3,12 +3,9 @@ FROM centos:8
 RUN cd /etc/yum.repos.d/
 RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
 RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
-RUN curl -sL https://rpm.nodesource.com/setup_18.x | bash -
 
 RUN yum update -y
-RUN yum install -y curl unzip which clang gcc-c++ git nodejs && rm -rf /var/cache/yum
-
-RUN npm i -g md-to-pdf && md-to-pdf --version
+RUN yum install -y curl unzip which clang gcc-c++ git && rm -rf /var/cache/yum
 
 ARG ADOPTIUM_JDK_URL=https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.16%2B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.16_8.tar.gz
 RUN curl -sL "$ADOPTIUM_JDK_URL" --output adoptium_jdk.tar.gz && tar -xzf adoptium_jdk.tar.gz && rm -rf adoptium_jdk.tar.gz && ln -sf /jdk*/bin/* /usr/bin/

@@ -7,7 +7,7 @@ RUN iex (iwr 'https://raw.githubusercontent.com/airpwr/airpwr/main/src/install.p
 RUN mkdir -p Temp
 COPY pwr.json /Temp/pwr.json
 COPY test.cpp /Temp/test.cpp
-RUN cd Temp; pwr version; pwr ls -fetch; pwr fetch; pwr -run gradle-init; pwr -run md2pdf-install; pwr -run test-cpp
+RUN cd Temp; pwr version; if ($LASTEXITCODE) { throw }; pwr ls -fetch; if ($LASTEXITCODE) { throw }; pwr fetch; if ($LASTEXITCODE) { throw }; pwr -run gradle-init; if ($LASTEXITCODE) { throw }; pwr -run test-cpp; if ($LASTEXITCODE) { throw }
 
 COPY build.gradle /Temp/app/build.gradle
-RUN cd Temp/app; pwr -run gradle-deps; cd /; Remove-Item -Path /Temp -Recurse
+RUN cd Temp/app; pwr -run gradle-deps; if ($LASTEXITCODE) { throw }; cd /; Remove-Item -Path /Temp -Recurse

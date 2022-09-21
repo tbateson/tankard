@@ -15,13 +15,9 @@
 			"packages": ["jdk:11", "gradle"],
 			"command": "gradle --no-daemon -i downloadDeps build run jacocoTestReport spotlessCheck; Pop-Location"
 		},
-		"md2pdf-install": {
-			"packages": ["node"],
-			"command": "npm i -g md-to-pdf"
-		},
 		"test-cpp": {
 			"packages": ["vs-buildtools:17.2.3:msvc143-amd64", "llvm"],
-			"command": "if (-not (Test-Path 'C:\\Users\\ContainerAdministrator\\AppData\\Roaming\\pwr\\pkg\\vs-buildtools-17.2.3\\Windows Kits\\10\\Lib\\10.0.22000.0\\um\\x64\\kernel32.lib')) { throw }; clang-cl test.cpp; if ($LASTEXITCODE) { throw }; ./test.exe"
+			"command": "if (-not (Test-Path 'C:\\Users\\ContainerAdministrator\\AppData\\Roaming\\pwr\\pkg\\vs-buildtools-17.2.3\\Windows Kits\\10\\Lib\\10.0.22000.0\\um\\x64\\kernel32.lib')) { throw }; clang-cl test.cpp; if ($LASTEXITCODE) { throw }; ./test.exe; if ($LASTEXITCODE) { throw }"
 		}
 	}
 }
