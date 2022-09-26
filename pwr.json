@@ -4,7 +4,8 @@
 		"gradle",
 		"vs-buildtools:17.2.3",
 		"llvm",
-		"git"
+		"git",
+		"node"
 	],
 	"scripts": {
 		"gradle-init": {
