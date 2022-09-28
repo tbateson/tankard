@@ -1,7 +1,7 @@
 FROM amd64/alpine:3
 
 RUN apk update
-RUN apk add curl unzip which clang build-base git openjdk11 nodejs npm nss chromium
+RUN apk add curl unzip which clang build-base git openjdk11 nodejs npm ttf-freefont nss chromium
 
 ENV CHROME_BIN="/usr/bin/chromium-browser" PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
 RUN mkdir -p tmp
