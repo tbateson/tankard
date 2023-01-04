@@ -3,7 +3,7 @@ FROM arm64v8/alpine:3
 RUN apk update
 RUN apk add curl unzip which clang build-base git openjdk11
 
-ARG GRADLE_VERSION=7.5.1
+ARG GRADLE_VERSION=7.6
 RUN curl -sL "https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip" --output gradle.zip && unzip -q gradle.zip && rm -rf gradle.zip && ln -sf /gradle-*/bin/gradle /usr/bin/
 RUN mkdir -p tmp && cd tmp && gradle init --no-daemon -i --type java-application --test-framework junit --dsl groovy --project-name tmp --package tmp --incubating
 RUN echo 'org.gradle.cache.cleanup=false' >> ~/.gradle/gradle.properties

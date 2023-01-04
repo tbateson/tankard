@@ -7,10 +7,10 @@ RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|
 RUN yum update -y
 RUN yum install -y curl unzip which clang gcc-c++ git && rm -rf /var/cache/yum
 
-ARG ADOPTIUM_JDK_URL=https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.16%2B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.16_8.tar.gz
+ARG ADOPTIUM_JDK_URL=https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.17%2B8/OpenJDK11U-jdk_x64_linux_hotspot_11.0.17_8.tar.gz
 RUN curl -sL "$ADOPTIUM_JDK_URL" --output adoptium_jdk.tar.gz && tar -xzf adoptium_jdk.tar.gz && rm -rf adoptium_jdk.tar.gz && ln -sf /jdk*/bin/* /usr/bin/
 
-ARG GRADLE_VERSION=7.5.1
+ARG GRADLE_VERSION=7.6
 RUN curl -sL "https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip" --output gradle.zip && unzip -q gradle.zip && rm -rf gradle.zip && ln -sf /gradle-*/bin/gradle /usr/bin/
 RUN mkdir -p tmp && cd tmp && gradle init --no-daemon -i --type java-application --test-framework junit --dsl groovy --project-name tmp --package tmp --incubating
 RUN echo 'org.gradle.cache.cleanup=false' >> ~/.gradle/gradle.properties

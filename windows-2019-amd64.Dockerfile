@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 SHELL ["powershell", "-Command"]
 
-RUN iex (iwr 'https://raw.githubusercontent.com/airpwr/airpwr/main/src/install.ps1' -UseBasicParsing)
+RUN iex (& "curl.exe" -s --url 'https://raw.githubusercontent.com/airpwr/airpwr/main/src/install.ps1' | Out-String)
 
 RUN mkdir -p Temp
 COPY pwr.json /Temp/pwr.json
