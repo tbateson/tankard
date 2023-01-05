@@ -26,6 +26,10 @@ jobs:
 
     - name: Build
       run: |
+        net stop docker
+        dockerd --unregister-service
+        dockerd --register-service --storage-opt "size=40G"
+        net start docker
         docker build . -f windows-2019-amd64.Dockerfile -t docker.io/${{ secrets.DOCKERHUB_USERNAME }}/tankard:windows-2019-amd64
 
     - name: Push
