@@ -1,8 +1,6 @@
 name: Alpine 3 arm64/v8
 
 on:
-  push:
-    branches: [ ]
   workflow_dispatch:
 
 permissions:
