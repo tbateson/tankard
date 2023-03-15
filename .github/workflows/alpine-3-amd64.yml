@@ -2,7 +2,7 @@ name: Alpine 3 amd64
 
 on:
   push:
-    branches: [ main, rspec ]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:

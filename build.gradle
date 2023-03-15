@@ -25,6 +25,7 @@ plugins {
 	id 'java-library'
 	id 'jacoco'
 	id 'com.diffplug.spotless' version '+'
+	id 'net.razvan.jacoco-to-cobertura' version '+'
 }
 
 repositories {
@@ -37,6 +38,17 @@ dependencies {
 
 application {
 	mainClass = 'tmp.App'
+}
+
+jacocoTestReport {
+	reports {
+		xml.required = true
+	}
+}
+
+jacocoToCobertura {
+	inputFile.set(file("$buildDir/reports/jacoco/test/jacocoTestReport.xml"))
+	outputFile.set(file("$buildDir/reports/cobertura.xml"))
 }
 
 task downloadDeps {
