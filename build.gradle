@@ -14,7 +14,8 @@ buildscript {
 		classpath 'junit:junit:4.+'
 
 		// other dependencies
-		classpath 'com.diffplug.spotless:spotless-plugin-gradle:+'
+		classpath 'org.simpleframework:simple-xml:2.7.1'
+		classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0'
 		classpath 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
 		classpath 'javax.xml.bind:jaxb-api:2.3.1'
 	}
@@ -24,7 +25,6 @@ plugins {
 	id 'application'
 	id 'java-library'
 	id 'jacoco'
-	id 'com.diffplug.spotless' version '+'
 	id 'net.razvan.jacoco-to-cobertura' version '+'
 }
 
