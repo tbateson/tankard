@@ -1,0 +1,32 @@
+allprojects {
+	buildscript {
+		repositories {
+			mavenCentral()
+			flatDir {
+				dirs fileTree(dir: new File(System.getProperty('user.home'), '.gradle/caches/modules-2/files-2.1'), include: '**/*.jar').getFiles().collect { f -> f.getParent() }
+			}
+		}
+		dependencies {
+			classpath 'org.simpleframework:simple-xml:+'
+			classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:+'
+		}
+	}
+}
+
+settingsEvaluated { settings ->
+	settings.pluginManagement {
+		resolutionStrategy {
+			eachPlugin {
+				if (requested.getId().getId() == 'net.razvan.jacoco-to-cobertura' && requested.getVersion() == '+') {
+					useModule('net.razvan:JacocoToCoberturaPlugin:+')
+				}
+			}
+		}
+		repositories {
+			gradlePluginPortal()
+			flatDir {
+				dirs fileTree(dir: new File(System.getProperty('user.home'), '.gradle/caches/modules-2/files-2.1'), include: '**/*.jar').getFiles().collect { f -> f.getParent() }
+			}
+		}
+	}
+}
