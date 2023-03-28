@@ -6,7 +6,7 @@ RUN Install-PackageProvider -Name NuGet -MinimumVersion '2.8.5.201' -Force
 RUN Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 RUN Install-Module Airpower -Scope AllUsers
 RUN air version
-RUN air pull 'jdk:11', 'gradle', 'vs-buildtools', 'llvm', 'git', 'node'
+RUN $ProgressPreference = 'SilentlyContinue'; air pull 'jdk:11', 'gradle', 'vs-buildtools', 'llvm', 'git', 'node'
 RUN air exec 'git' -ScriptBlock { git config --system --add safe.directory '*' }
 
 RUN mkdir -p Temp
