@@ -9,8 +9,9 @@ RUN mkdir -p tmp
 COPY README.md /tmp/README.md
 RUN node -v && npm i -g puppeteer && npm i -g md-to-pdf && cd tmp && md-to-pdf README.md --launch-options '{ "executablePath": "/usr/bin/chromium-browser", "args": ["--no-sandbox", "--headless", "--disable-gpu"] }'
 
-ARG GRADLE_VERSION=8.0.2
+ARG GRADLE_VERSION=8.1.1
 RUN curl -sL "https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip" --output gradle.zip && unzip -q gradle.zip && rm -rf gradle.zip && ln -sf /gradle-*/bin/gradle /usr/bin/
+RUN mkdir -p /root/.gradle && echo 'org.gradle.cache.cleanup=false' >> /root/.gradle/gradle.properties
 RUN cd tmp && gradle init --no-daemon -i --type java-application --test-framework junit --dsl groovy --project-name tmp --package tmp --incubating
 COPY build.gradle /tmp/app/build.gradle
 RUN cd tmp/app && gradle --no-daemon -i downloadDeps build run jacocoTestReport jacocoToCobertura

@@ -2,7 +2,7 @@ name: Windows 2019 amd64
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, windows, windows2019 ]
   workflow_dispatch:
 
 permissions:
