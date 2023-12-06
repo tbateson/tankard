@@ -5,9 +5,9 @@ buildscript {
 
 	dependencies {
 		// main dependencies
-		classpath 'com.github.horseshoe:horseshoe:1.+'
+		classpath 'com.github.horseshoe:horseshoe:2.+'
 		classpath 'io.github.xs-parser:xs-parser:1.+'
-		classpath 'org.yaml:snakeyaml:1.+'
+		classpath 'org.yaml:snakeyaml:2.+'
 		classpath 'net.sf.saxon:Saxon-HE:10.+'
 
 		// test dependencies

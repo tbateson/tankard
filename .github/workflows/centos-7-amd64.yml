@@ -2,7 +2,7 @@ name: Centos 7 amd64
 
 on:
   push:
-    branches: [ main, centos, centos7 ]
+    branches: [ main, linux, centos, centos7 ]
   workflow_dispatch:
 
 permissions:
@@ -13,20 +13,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      uses: docker/setup-buildx-action@v3
 
     - name: Login to Docker Hub
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build and Push
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         file: centos-7-amd64.Dockerfile
-        push: true
+        push: ${{ github.ref == 'refs/heads/main' }}
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/tankard:centos-7-amd64
